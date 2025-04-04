@@ -1,19 +1,23 @@
-translations = {
-    "hello": "hola",
-    "thank you": "gracias",
-    "sorry": "lo siento",
-    "goodbye": "adios",
-    "day": "día",
-    "chair": "silla",
-    "house": "casa",
-    "car": "coche",
-    "bread": "pan",
-    "book": "libro",
-    "paper": "papel",
-    "child": "muchacho"
-}
+import csv
+
+translations = {}
+
+with open("translations.csv", "r") as words:
+reader = csv.DictReader(words, delimiter=",")
+for line in reader:
+  english = line["English"]
+  line = ["English"].lower()
+  spanish = line["Spanish"]
+  line = ["Spanish"].lower()
+  french = line["French"]
+  line = ["French"].lower()
+
+# translations[english] sets the English header as the dictionary key
+# translations[english] should be equal to spanish and french values
+translations[english] = [spanish, french]
 
 done = False
+print('Type "done" at any time to exit')
 
 # setting the while loop to not done means the loop will run as long as done is false
 while not done:
@@ -27,4 +31,3 @@ while not done:
   else:
     print("Sorry that word is not listed in the dictionary.")
 
-print('Type "done" at any time to exit')
